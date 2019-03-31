@@ -4,12 +4,13 @@
 #
 Name     : ntl
 Version  : 11.3.2
-Release  : 2
+Release  : 3
 URL      : https://www.shoup.net/ntl/ntl-11.3.2.tar.gz
 Source0  : https://www.shoup.net/ntl/ntl-11.3.2.tar.gz
 Summary  : A Library for doing Number Theory
 Group    : Development/Tools
 License  : LGPL-2.1
+Requires: ntl-lib = %{version}-%{release}
 Requires: ntl-license = %{version}-%{release}
 BuildRequires : gmp-dev
 Patch1: build.patch
@@ -21,6 +22,7 @@ Release date: 2018.11.15
 %package dev
 Summary: dev components for the ntl package.
 Group: Development
+Requires: ntl-lib = %{version}-%{release}
 Provides: ntl-devel = %{version}-%{release}
 Requires: ntl = %{version}-%{release}
 
@@ -34,6 +36,15 @@ Group: Documentation
 
 %description doc
 doc components for the ntl package.
+
+
+%package lib
+Summary: lib components for the ntl package.
+Group: Libraries
+Requires: ntl-license = %{version}-%{release}
+
+%description lib
+lib components for the ntl package.
 
 
 %package license
@@ -53,14 +64,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1553993575
+export SOURCE_DATE_EPOCH=1553993759
 pushd src
-%configure --disable-static
+%configure --disable-static SHARED=on
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1553993575
+export SOURCE_DATE_EPOCH=1553993759
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ntl
 cp doc/copying.txt %{buildroot}/usr/share/package-licenses/ntl/doc_copying.txt
@@ -188,6 +199,7 @@ popd
 /usr/include/NTL/vector.h
 /usr/include/NTL/version.h
 /usr/include/NTL/xdouble.h
+/usr/lib64/libntl.so
 
 %files doc
 %defattr(0644,root,root,0755)
@@ -336,6 +348,11 @@ popd
 /usr/share/doc/NTL/version.txt
 /usr/share/doc/NTL/xdouble.cpp.html
 /usr/share/doc/NTL/xdouble.txt
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib64/libntl.so.39
+/usr/lib64/libntl.so.39.0.2
 
 %files license
 %defattr(0644,root,root,0755)
