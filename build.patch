@@ -37,3 +37,14 @@
  'INCLUDEDIR'  => '$(PREFIX)/include',
  'DOCDIR'      => '$(PREFIX)/share/doc',
  
+--- ntl-11.3.2/src/DoConfig~	2019-03-31 00:51:29.000000000 +0000
++++ ntl-11.3.2/src/DoConfig	2019-03-31 01:00:55.967708095 +0000
+@@ -14,7 +14,7 @@
+ %MakeVal = (
+ 
+ 'CXX'	      => 'g++',
+-'CXXFLAGS'    => '-g -O2',
++'CXXFLAGS'    => '-g -O2 $(CFLAGS)',
+ 'CXXAUTOFLAGS'=> '',
+ 'NOCONTRACT'  => '',
+ 'AR'	      => 'ar',
