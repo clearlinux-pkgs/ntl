@@ -4,7 +4,7 @@
 #
 Name     : ntl
 Version  : 11.3.2
-Release  : 3
+Release  : 4
 URL      : https://www.shoup.net/ntl/ntl-11.3.2.tar.gz
 Source0  : https://www.shoup.net/ntl/ntl-11.3.2.tar.gz
 Summary  : A Library for doing Number Theory
@@ -64,14 +64,21 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1553993759
+export SOURCE_DATE_EPOCH=1553993993
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math "
 pushd src
 %configure --disable-static SHARED=on
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1553993759
+export SOURCE_DATE_EPOCH=1553993993
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ntl
 cp doc/copying.txt %{buildroot}/usr/share/package-licenses/ntl/doc_copying.txt
