@@ -4,7 +4,7 @@
 #
 Name     : ntl
 Version  : 11.3.2
-Release  : 5
+Release  : 6
 URL      : https://www.shoup.net/ntl/ntl-11.3.2.tar.gz
 Source0  : https://www.shoup.net/ntl/ntl-11.3.2.tar.gz
 Summary  : A Library for doing Number Theory
